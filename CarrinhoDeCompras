@@ -1,0 +1,140 @@
+prod = ('[ 1 ]Trakinas', 2.25, '[ 2 ]Doritos', 2.99, '[ 3 ]Biscoito Mabel', 2.99,
+        '[ 4 ]Biscoito Cookie', 3.25, '[ 5 ]Coca-Cola', 3.25,
+        '[ 6 ]Guaraná', 2.99, '[ 7 ]Pepsi', 3.25, '[ 8 ]Guaravita', 1.99,
+        '[ 9 ]SchinCariol 355ml', 3.25, '[ 10 ]Stella 355ml', 3.50, '[ 11 ]Bohemia 355ml', 2.90)
+
+cr = []
+cp = 0
+cpr = 0
+cont = 0
+T = 1
+
+print('-=-' * 13)
+for pos in range(0, len(prod)):
+    if pos % 2 == 0:
+        print(f'{prod[pos]:.<30}', end='')
+    else:
+        print(f'R${prod[pos]:.>7.2f}')
+print('-=-' * 13)
+
+while True:
+    car = int(input('Você deseja comprar qual produto?'))
+
+    if car <= 0 or car >= 12:
+        while True:
+            car = int(input('\033[31mDigite um número válido, qual produto deseja comprar?\033[m'))
+            if car >= 1 and car <= 11:
+                break
+            else:
+                continue
+
+    else:
+        pass
+
+    if car == 1:
+        cr.append('Trakinas')
+        cp += 1
+        cpr += 2.25
+    elif car == 2:
+        cr.append('Doritos')
+        cp += 1
+        cpr += 2.99
+    elif car == 3:
+        cr.append('Biscoito Mabel')
+        cp += 1
+        cpr += 2.99
+    elif car == 4:
+        cr.append('Biscoito Cookie')
+        cp += 1
+        cpr += 3.25
+    elif car == 5:
+        cr.append('Coca-Cola')
+        cp += 1
+        cpr += 3.25
+    elif car == 6:
+        cr.append('Guaraná')
+        cp += 1
+        cpr += 2.99
+    elif car == 7:
+        cr.append('Pepsi')
+        cp += 1
+        cpr += 3.25
+    elif car == 8:
+        cr.append('Guaravita')
+        cp += 1
+        cpr += 1.99
+    elif car == 9:
+        cr.append('SchinCariol 355ml')
+        cp += 1
+        cpr += 3.25
+    elif car == 10:
+        cr.append('Stella 355ml')
+        cp += 1
+        cpr += 3.50
+    elif car == 11:
+        cr.append('Bohemia 355ml')
+        cp += 1
+        cpr += 2.99
+
+    cont += 1
+
+    if cont >= 2:
+        askc = str(input('Deseja continuar?[ S/N ]'))
+        if askc in 'Ss':
+            pass
+        elif askc in 'Nn':
+            break
+
+        else:
+            while True:
+                askc = str(input('Deseja continuar?[ S/N ]'))
+                if askc in 'Ss':
+                    pass
+                elif askc in 'Nn':
+                    break
+
+                else:
+                    continue
+
+        if askc in 'nN':
+            break
+
+print('-=-' * 13)
+print('Você comprou os itens abaixo')
+for x in cr:
+    print(f'\033[4m{x}\033[m')
+print(f'Os itens acima dão um total de {cpr:.2f}')
+
+fp = 'Formas de pagamento'
+print('-=-' * 13)
+print(f'{fp:^39}')
+print('Formas de pagamento:\n'
+      '[ 1 ]Á vista cartão/dinheiro/cheque\n'
+      '[ 2 ]Cartão/Crédito/Debito\n'
+      '[ 3 ]Cartão 2x\n'
+      '[ 4 ]Cartão 2x ou mais\n')
+print('-=-' * 13)
+
+op = int(input('Escolha uma forma de pagamento!'))
+
+if op < 1 or op > 4:
+    while True:
+        op = int(input('\033[31mEscolha uma opção válida!!'))
+        if op > 0 and op < 5:
+            break
+
+if op == 1:
+    print(f'\033[34m{cpr:.2f} á vista dá um total de {cpr * 0.85:.2f}R$\033[m')
+elif op == 2:
+    print(f'\033[34m{cpr:.2f} no Cartão/Crédito/Débito dá um total de {cpr * 0.90:.2f}R$\033[m')
+elif op == 3:
+    print(f'\033[34m{cpr:.2f} dá um total de {cpr / 2:.2f}R$ em 2x\033[m')
+elif op == 4:
+    par = int(input(f'\033[34m{cpr:.2f} Deseja pagar em quantas vezes?\033[m'))
+    if par >= 2:
+        print(f'\033[34m{cpr:.2f} em {par}x dá um total de {cpr / 3:.2f}R$ pro mês\033[m')
+    elif par < 2:
+        while True:
+            par = int(input('\033[31mMin de 2 parcelas!!\033[m'))
+            if par >= 2:
+                print(f'\033[34m{cpr:.2f} em {par}x dá um total de {cpr / par:.2f}R$ por mês\033[m')
